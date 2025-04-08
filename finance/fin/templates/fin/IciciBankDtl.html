@@ -1,0 +1,43 @@
+{% load static %}  <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amex 61001 Data</title>
+    <link rel="stylesheet" href="{% static 'fin/css/styles.css' %}">
+</head>
+<body>
+    <h1>Data from Amex 61001</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Number</th>
+                <th>Description</th>
+                <th>Deposit</th>
+                <th>Withdrawal</th>
+                <th>Bal</th>
+                <th>Auto Sweep Amt</th>
+                <th>Rev Sweep</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+
+        
+                    <td>{{ item.ibd_date|default:"N/A" }}</td>
+                    <td>{{ item.ibd_num|default:"No description" }}</td>
+                    <td>{{ item.ibd_desc|default:"0.00" }}</td>
+                    <td>{{ item.ibd_deposit|default:"0.00" }}</td>                
+                    <td>{{ item.ibd_with|default:"N/A" }}</td>
+                    <td>{{ item.ibd_bal|default:"No description" }}</td>
+                    <td>{{ item.ibd_auto_sweep|default:"0.00" }}</td>
+                    <td>{{ item.ibd_rev_sweep|default:"0.00" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

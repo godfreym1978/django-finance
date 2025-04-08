@@ -1,0 +1,37 @@
+{% load static %}  <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amex 61001 Data</title>
+    <link rel="stylesheet" href="{% static 'fin/css/styles.css' %}">
+</head>
+<body>
+    <h1>Data from Amex 61001</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Investment</th>
+                <th>Transaction</th>
+                <th>Tran Amount</th>
+                <th>Tran Unit</th>
+                <th>Unit Val</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                
+                    <td>{{ item.rwf_tran_date|default:"N/A" }}</td>
+                    <td>{{ item.rwf_invmt|default:"No description" }}</td>
+                    <td>{{ item.rwf_tran|default:"N/A" }}</td>
+                    <td>{{ item.rwf_tran_amt|default:"No description" }}</td>
+                    <td>{{ item.rwf_tran_unit|default:"0.00" }}</td>
+                    <td>{{ item.rwf_unit_val|default:"0.00" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

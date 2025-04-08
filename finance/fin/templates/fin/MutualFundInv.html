@@ -1,0 +1,41 @@
+{% load static %}  <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amex 61001 Data</title>
+    <link rel="stylesheet" href="{% static 'fin/css/styles.css' %}">
+</head>
+<body>
+    <h1>Data from Amex 61001</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Transaction</th>
+                <th>Amount</th>
+                <th>Pub NAV</th>
+                <th>Tran NAV</th>
+                <th>Tran Qty</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+
+                    <td>{{ item.mfi_mf_name|default:"N/A" }}</td>
+                    <td>{{ item.mfi_tran_date|default:"No description" }}</td>
+                    <td>{{ item.mfi_tran|default:"0.00" }}</td>
+                    <td>{{ item.mfi_amt|default:"0.00" }}</td>                    
+                    <td>{{ item.mfi_pub_nav|default:"N/A" }}</td>
+                    <td>{{ item.mfi_tran_nav|default:"No description" }}</td>
+                    <td>{{ item.mfi_tran_qty|default:"0.00" }}</td>
+                    <td>{{ item.mfi_bal_qty|default:"0.00" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

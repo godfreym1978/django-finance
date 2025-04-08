@@ -1,0 +1,33 @@
+{% load static %}  <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amex 61001 Data</title>
+    <link rel="stylesheet" href="{% static 'fin/css/styles.css' %}">
+</head>
+<body>
+    <h1>Data from Amex 61001</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+
+                    <td>{{ item.aps_tran_type|default:"N/A" }}</td>
+                    <td>{{ item.aps_tran_date|default:"No description" }}</td>
+                    <td>{{ item.aps_tran_amt|default:"0.00" }}</td>
+                    <td>{{ item.aps_bal|default:"0.00" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

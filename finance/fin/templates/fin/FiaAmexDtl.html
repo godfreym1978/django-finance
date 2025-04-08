@@ -1,0 +1,32 @@
+{% load static %}  <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amex 61001 Data</title>
+    <link rel="stylesheet" href="{% static 'fin/css/styles.css' %}">
+</head>
+<body>
+    <h1>Data from Amex 61001</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Deposit</th>
+                <th>Withdrawal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.fiaam_date|default:"N/A" }}</td>
+                    <td>{{ item.fiaam_desc|default:"No description" }}</td>
+                    <td>{{ item.fiaam_deposit|default:"0.00" }}</td>
+                    <td>{{ item.fiaam_with|default:"0.00" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

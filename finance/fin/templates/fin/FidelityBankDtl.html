@@ -1,0 +1,37 @@
+{% load static %}  <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amex 61001 Data</title>
+    <link rel="stylesheet" href="{% static 'fin/css/styles.css' %}">
+</head>
+<body>
+    <h1>Data from Amex 61001</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Number</th>
+                <th>Description</th>
+                <th>Deposit</th>
+                <th>Withdrawal</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>                
+                    <td>{{ item.fbd_date|default:"N/A" }}</td>
+                    <td>{{ item.fbd_num|default:"N/A" }}</td>
+                    <td>{{ item.fbd_desc|default:"No description" }}</td>
+                    <td>{{ item.fbd_deposit|default:"0.00" }}</td>
+                    <td>{{ item.fbd_with|default:"0.00" }}</td>
+                    <td>{{ item.fbd_bal|default:"0.00" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    
+</body>
+</html>
