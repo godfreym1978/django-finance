@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'fin',  # Make sure this line is present
+    'fin',  # Make sure this line is present for installed apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

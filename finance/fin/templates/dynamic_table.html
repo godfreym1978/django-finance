@@ -1,0 +1,29 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table: {{ table_name }}</title>
+</head>
+<body>
+    <h1>{{ table_name }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                {% for field in fields %}
+                    <th>{{ field|title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for field in fields %}
+                        <td>{{ row|custom_getattr:field }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

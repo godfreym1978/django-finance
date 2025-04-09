@@ -3,9 +3,14 @@
 
 # mybackendapp/views.py
 from django.shortcuts import render
+from django.apps import apps
 from .models import Amex61001Dtl, AmexCorpDtl, AmexCostcoDtl, AmexPrsnlSvg, BoaBankDtl, BoaVisaDtl, ChaseBankChk, ChaseBankSvr, ChaseRentChk, ChaseRentChk, ChaseBankSvr, ChaseVisaDtl, CommbankChkDtl, CommbankSvrDtl, FiaAmexDtl, FidelityBankDtl, FidelityMfTbl, FifthrdBankDtl, HdfcBankDtl, IciciBankDtl, MutualFundInv, RothWf401, SuntrustBankDtl, UsaStockTbl, WellsFargoVisaDtl # Replace with your model names.
 
+import sys
+print(sys.path)
 
+'''
+Commented out to create dynamic views and templates
 def amex61001_dtl_view(request):
     data = Amex61001Dtl.objects.all()  # Retrieve all records from Table 1
     return render(request, "fin/Amex61001Dtl.html", {"data": data})
@@ -98,3 +103,25 @@ def usastock_dtl_view(request):
 def wfvisa_dtl_view(request):
     data = WellsFargoVisaDtl.objects.all()  # Retrieve all records from Table 1
     return render(request, "fin/WellsFargoVisaDtl.html", {"data": data})
+
+'''
+
+# fin/views.py
+from django.shortcuts import render
+from django.apps import apps
+
+def dynamic_table_view(request, table_name):
+    try:
+        model = apps.get_model('fin', table_name)
+        data = model.objects.all()
+
+        fields = [field.name for field in model._meta.fields]
+
+        context = {
+            'table_name': table_name,
+            'fields': fields,
+            'data': data,
+        }
+        return render(request, 'dynamic_table.html', context)
+    except LookupError:
+        return render(request, 'table_not_found.html', {'table_name': table_name})

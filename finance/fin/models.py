@@ -16,6 +16,11 @@ class Amex61001Dtl(models.Model):
     a61001_with = models.DecimalField(db_column='A61001_WITH', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-a61001_date'] #order the records from the table
+        #create a index on the table
+        #indexes = [
+        #    models.Index(fields=['-publish']),
+        #    ]
         managed = False
         db_table = 'AMEX_61001_DTL'
         unique_together = (('a61001_date', 'a61001_deposit', 'a61001_with'),)
@@ -32,6 +37,7 @@ class AmexCorpDtl(models.Model):
     acorp_bal = models.DecimalField(db_column='ACORP_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-acorp_date']
         managed = False
         db_table = 'AMEX_CORP_DTL'
         unique_together = (('acorp_date', 'acorp_bal'),)
@@ -44,6 +50,7 @@ class AmexCostcoDtl(models.Model):
     costco_with = models.DecimalField(db_column='COSTCO_WITH', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-costco_date']
         managed = False
         db_table = 'AMEX_COSTCO_DTL'
         unique_together = (('costco_date', 'costco_desc', 'costco_deposit', 'costco_with'),)
@@ -57,6 +64,7 @@ class AmexPrsnlSvg(models.Model):
     aps_bal = models.DecimalField(db_column='APS_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-aps_tran_date']
         managed = False
         db_table = 'AMEX_PRSNL_SVG'
         unique_together = (('aps_tran_date', 'aps_bal'),)
@@ -70,6 +78,7 @@ class BoaBankDtl(models.Model):
     bbd_bal = models.DecimalField(db_column='BBD_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-bbd_date']
         managed = False
         db_table = 'BOA_BANK_DTL'
         unique_together = (('bbd_date', 'bbd_desc', 'bbd_bal'), ('bbd_date', 'bbd_desc', 'bbd_bal'),)
@@ -83,6 +92,7 @@ class BoaVisaDtl(models.Model):
     bvd_with = models.DecimalField(db_column='BVD_WITH', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-bvd_date']
         managed = False
         db_table = 'BOA_VISA_DTL'
         unique_together = (('bvd_date', 'bvd_desc', 'bvd_deposit', 'bvd_with'), ('bvd_date', 'bvd_desc', 'bvd_deposit', 'bvd_with'),)
@@ -98,6 +108,7 @@ class ChaseBankChk(models.Model):
     cbc_bal = models.DecimalField(db_column='CBC_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-cbc_date']
         managed = False
         db_table = 'CHASE_BANK_CHK'
         unique_together = (('cbc_date', 'cbc_desc', 'cbc_bal'), ('cbc_date', 'cbc_desc', 'cbc_bal'),)
@@ -113,6 +124,7 @@ class ChaseBankSvr(models.Model):
     cbs_bal = models.DecimalField(db_column='CBS_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-cbs_date']
         managed = False
         db_table = 'CHASE_BANK_SVR'
         unique_together = (('cbs_date', 'cbs_desc', 'cbs_bal'), ('cbs_date', 'cbs_desc', 'cbs_bal'),)
@@ -128,6 +140,7 @@ class ChaseRentChk(models.Model):
     crc_bal = models.DecimalField(db_column='CRC_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-crc_date']
         managed = False
         db_table = 'CHASE_RENT_CHK'
         unique_together = (('crc_date', 'crc_desc', 'crc_bal'),)
@@ -141,6 +154,7 @@ class ChaseVisaDtl(models.Model):
     cvd_with = models.DecimalField(db_column='CVD_WITH', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-cvd_date']
         managed = False
         db_table = 'CHASE_VISA_DTL'
         unique_together = (('cvd_date', 'cvd_deposit', 'cvd_with'),)
@@ -154,6 +168,7 @@ class CommbankChkDtl(models.Model):
     cbd_bal = models.DecimalField(db_column='CBD_BAL', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-cbd_date']
         managed = False
         db_table = 'COMMBANK_CHK_DTL'
 
@@ -167,6 +182,7 @@ class CommbankSvrDtl(models.Model):
     cbd_bal = models.DecimalField(db_column='CBD_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-cbd_date']
         managed = False
         db_table = 'COMMBANK_SVR_DTL'
         unique_together = (('cbd_date', 'cbd_desc', 'cbd_bal'), ('cbd_date', 'cbd_desc', 'cbd_bal'),)
@@ -179,6 +195,7 @@ class FiaAmexDtl(models.Model):
     fiaam_with = models.DecimalField(db_column='FIAAM_WITH', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-fiaam_date']
         managed = False
         db_table = 'FIA_AMEX_DTL'
 
@@ -193,6 +210,7 @@ class FidelityBankDtl(models.Model):
     fbd_bal = models.DecimalField(db_column='FBD_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-fbd_date']
         managed = False
         db_table = 'FIDELITY_BANK_DTL'
         unique_together = (('fbd_date', 'fbd_desc', 'fbd_bal'), ('fbd_date', 'fbd_desc', 'fbd_bal'),)
@@ -208,6 +226,7 @@ class FidelityMfTbl(models.Model):
     fmt_bal = models.DecimalField(db_column='FMT_BAL', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-fmt_trade_dt']
         managed = False
         db_table = 'FIDELITY_MF_TBL'
 
@@ -222,6 +241,7 @@ class FifthrdBankDtl(models.Model):
     ftbd_bal = models.DecimalField(db_column='FTBD_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-ftbd_date']
         managed = False
         db_table = 'FIFTHRD_BANK_DTL'
         unique_together = (('ftbd_date', 'ftbd_desc', 'ftbd_bal'), ('ftbd_date', 'ftbd_desc', 'ftbd_bal'),)
@@ -237,6 +257,7 @@ class HdfcBankDtl(models.Model):
     hbd_bal = models.DecimalField(db_column='HBD_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-hbd_date']
         managed = False
         db_table = 'HDFC_BANK_DTL'
         unique_together = (('hbd_date', 'hbd_desc', 'hbd_bal'), ('hbd_date', 'hbd_desc', 'hbd_bal'),)
@@ -254,6 +275,7 @@ class IciciBankDtl(models.Model):
     ibd_rev_sweep = models.DecimalField(db_column='IBD_REV_SWEEP', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-ibd_date']
         managed = False
         db_table = 'ICICI_BANK_DTL'
         unique_together = (('ibd_date', 'ibd_desc', 'ibd_bal'), ('ibd_date', 'ibd_desc', 'ibd_bal'),)
@@ -271,6 +293,7 @@ class MutualFundInv(models.Model):
     mfi_bal_qty = models.DecimalField(db_column='MFI_BAL_QTY', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-mfi_tran_date']
         managed = False
         db_table = 'MUTUAL_FUND_INV'
         unique_together = (('mfi_mf_name', 'mfi_tran_date', 'mfi_tran', 'mfi_amt'), ('mfi_mf_name', 'mfi_tran_date', 'mfi_tran', 'mfi_amt'),)
@@ -285,6 +308,7 @@ class RothWf401(models.Model):
     rwf_unit_val = models.DecimalField(db_column='RWF_UNIT_VAL', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-rwf_tran_date']
         managed = False
         db_table = 'ROTH_WF_401'
 
@@ -299,6 +323,7 @@ class SuntrustBankDtl(models.Model):
     sbd_bal = models.DecimalField(db_column='SBD_BAL', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-sbd_date']
         managed = False
         db_table = 'SUNTRUST_BANK_DTL'
         unique_together = (('sbd_date', 'sbd_desc', 'sbd_bal'),)
@@ -315,6 +340,7 @@ class UsaStockTbl(models.Model):
     ust_commision = models.DecimalField(db_column='UST_COMMISION', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-ust_date']
         managed = False
         db_table = 'USA_STOCK_TBL'
         unique_together = (('ust_tick', 'ust_price', 'ust_tran', 'ust_date', 'ust_qty'),)
@@ -329,6 +355,7 @@ class WellsFargoVisaDtl(models.Model):
     wfvd_with = models.DecimalField(db_column='WFVD_WITH', max_digits=10, decimal_places=2)  # Field name made lowercase.
 
     class Meta:
+        ordering = ['-wfvd_date']
         managed = False
         db_table = 'WELLS_FARGO_VISA_DTL'
         unique_together = (('wfvd_date', 'wfvd_desc', 'wfvd_deposit', 'wfvd_with'), ('wfvd_date', 'wfvd_desc', 'wfvd_deposit', 'wfvd_with'),)
