@@ -30,5 +30,6 @@ urlpatterns = [
    
    
    path('table/<str:table_name>/', views.dynamic_table_view, name='dynamic_table'),
+   path('table_list/', views.table_list_view, name='table_list'), # New URL pattern
 
 ]

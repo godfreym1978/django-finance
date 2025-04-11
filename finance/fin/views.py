@@ -109,6 +109,7 @@ def wfvisa_dtl_view(request):
 # fin/views.py
 from django.shortcuts import render
 from django.apps import apps
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def dynamic_table_view(request, table_name):
     try:
@@ -117,11 +118,27 @@ def dynamic_table_view(request, table_name):
 
         fields = [field.name for field in model._meta.fields]
 
+        paginator = Paginator(data, 22)  # Show 20 records per page
+
+        page = request.GET.get('page')
+        try:
+            page_data = paginator.page(page)
+        except PageNotAnInteger:
+            page_data = paginator.page(1)  # If page is not an integer, deliver first page.
+        except EmptyPage:
+            page_data = paginator.page(paginator.num_pages)  # If page is out of range, deliver last page.
+
         context = {
             'table_name': table_name,
             'fields': fields,
-            'data': data,
+            'page_data': page_data,  # Use page_data instead of data
         }
+
         return render(request, 'dynamic_table.html', context)
     except LookupError:
         return render(request, 'table_not_found.html', {'table_name': table_name})
+
+def table_list_view(request):
+    models = apps.get_app_config('fin').get_models()  # Get all models in the 'fin' app
+    model_names = [model.__name__ for model in models]
+    return render(request, 'table_list.html', {'model_names': model_names})
